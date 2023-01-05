@@ -1,23 +1,27 @@
-Udemy Finance Dataset R implementation
-This repository contains the R implementation for the popular dataset :
+# UCI Machine Learning Repository
 
-Finance & Accounting Courses - Udemy (13K+ course).
 
-this Task is a part of my VHDL Course at Palestine Technical University - Karoorie
 
-Task
-cleaned Data
-dealt with missing values
-categorized the data ,classifcation
-Requirements file
-udemy Meta.txt
+this Task is a part of my Data Mining Course at <a href="https://ptuk.edu.ps/en/">Palestine Technical University - Karoorie</a>
 
-Description
+
+## Task 
+- cleaned Data 
+- dealt with missing values
+- categorized the data ,classifcation
+
+## Requirements file
+https://archive.ics.uci.edu/ml/datasets/Air+Quality
+
+## Description 
+
 This R implementation of the dataset includes data cleaning, data visualization, and classifcation. Data cleaning involves removing outliers, formatting data, and handling missing values. Data visualization involves creating charts and graphs to understand the data better.
 
 This repository contains the code for the R implementation, as well as the data files in CSV format. The code is written in R and is fully commented for better understanding.
 
-Contributing
+
+## Contributing
+
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
