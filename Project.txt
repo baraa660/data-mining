@@ -1,0 +1,153 @@
+#Loading csv file on a dataframe
+library(readxl)
+AirQualityUCI <- read.csv("C:\\Users\\DELL\\Desktop\\AirQualityUCI.csv")
+
+str(AirQualityUCI)
+#Dropping Date, Time and CO(GT) column
+AirQualityUCI = AirQualityUCI[-c(1,2,3)]
+
+#Replacing null data from -200 to NaN for posterior treatment
+AirQualityUCI [AirQualityUCI ==-200] <- NA
+
+#Removing NMHC(GT), NOx(GT), NOx(GT) sensor due to amount of null values
+AirQualityUCI = AirQualityUCI[-c(4,7,9)]
+
+## rename columns
+colnames(AirQualityUCI) <- c('PT08.S1','C6H6','PT08.S2','PT08.S3','PT08.S4','PT08.S5','T','RH','AH')
+
+-------------------------------------------------------------------------------------------------------------------
+
+##Removing Outliers in PT08.S1 column
+##Save q1 and q3 as numeric values
+q1 = as.numeric(summary(AirQualityUCI$PT08.S1)[2])
+q3 = as.numeric(summary(AirQualityUCI$PT08.S1)[5])
+###Find IQR
+iqr <- q3 - q1
+##Removing values higher than q3 + 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$PT08.S1 <= q3 + iqr*1.5)
+##Removing values lower than q1 - 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$PT08.S1 >= q1 - (iqr*1.5))
+
+##Removing Outliers in C6H6 column
+##Save q1 and q3 as numeric values
+q1 = as.numeric(summary(AirQualityUCI$C6H6)[2])
+q3 = as.numeric(summary(AirQualityUCI$C6H6)[5])
+###Find IQR
+iqr <- q3 - q1
+##Removing values higher than q3 + 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$C6H6 <= q3 + iqr*1.5)
+##Removing values lower than q1 - 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$C6H6 >= q1 - (iqr*1.5))
+
+ #Removing Outliers in PT08.S2 column
+####Save q1 and q3 as numeric values
+q1 = as.numeric(summary(AirQualityUCI$PT08.S2)[2])
+q3 = as.numeric(summary(AirQualityUCI$PT08.S2)[5])
+ ###Find IQR
+iqr <- q3 - q1
+##Removing values higher than q3 + 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$PT08.S2 <= q3 + iqr*1.5)
+##Removing values lower than q1 - 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$PT08.S2 >= q1 - (iqr*1.5))
+
+
+#Removing Outliers in PT08.S3 column
+ ####Save q1 and q3 as numeric values
+q1 = as.numeric(summary(AirQualityUCI$PT08.S3)[2])
+q3 = as.numeric(summary(AirQualityUCI$PT08.S3)[5])
+###Find IQR
+iqr <- q3 - q1
+##Removing values higher than q3 + 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$PT08.S3 <= q3 + iqr*1.5)
+##Removing values lower than q1 - 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$PT08.S3 >= q1 - (iqr*1.5))
+
+
+#Removing Outliers in PT08.S4 column
+####Save q1 and q3 as numeric values
+q1 = as.numeric(summary(AirQualityUCI$PT08.S4)[2])
+q3 = as.numeric(summary(AirQualityUCI$PT08.S4)[5])
+###Find IQR
+iqr <- q3 - q1
+##Removing values higher than q3 + 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$PT08.S4<= q3 + iqr*1.5)
+##Removing values lower than q1 - 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$PT08.S4>= q1 - (iqr*1.5))
+
+
+#Removing Outliers in PT08.S5 column
+####Save q1 and q3 as numeric values
+q1 = as.numeric(summary(AirQualityUCI$PT08.S5)[2])
+q3 = as.numeric(summary(AirQualityUCI$PT08.S5)[5])
+###Find IQR
+iqr <- q3 - q1
+##Removing values higher than q3 + 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$PT08.S5 <= q3 + iqr*1.5)
+##Removing values lower than q1 - 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$PT08.S5 >= q1 - (iqr*1.5))
+
+
+#Removing Outliers in T column
+####Save q1 and q3 as numeric values
+q1 = as.numeric(summary(AirQualityUCI$T)[2])
+q3 = as.numeric(summary(AirQualityUCI$T)[5])
+###Find IQR
+iqr <- q3 - q1
+##Removing values higher than q3 + 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$T <= q3 + iqr*1.5)
+##Removing values lower than q1 - 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$T >= q1 - (iqr*1.5))
+
+#Removing Outliers in RH column
+####Save q1 and q3 as numeric values
+q1 = as.numeric(summary(AirQualityUCI$RH)[2])
+q3 = as.numeric(summary(AirQualityUCI$RH)[5])
+###Find IQR
+iqr <- q3 - q1
+##Removing values higher than q3 + 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$RH <= q3 + iqr*1.5)
+##Removing values lower than q1 - 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$RH >= q1 - (iqr*1.5))
+
+#Removing Outliers in AH column
+####Save q1 and q3 as numeric values
+q1 = as.numeric(summary(AirQualityUCI$AH)[2])
+q3 = as.numeric(summary(AirQualityUCI$AH)[5])
+###Find IQR
+iqr <- q3 - q1
+##Removing values higher than q3 + 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$AH <= q3 + iqr*1.5)
+##Removing values lower than q1 - 1.5*iqr
+AirQualityUCI <- subset(AirQualityUCI, AirQualityUCI$AH >= q1 - (iqr*1.5))
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+##Eliminating rows with NaN values 
+AirQualityUCI <- na.omit(AirQualityUCI)
+
+
+##scaling data to be mean almost = 0
+AirQualityUCI=scale(AirQualityUCI)
+
+
+library(NbClust)
+library (cluster)
+library(stats)
+library(ggplot2)
+library(plyr)
+library(dplyr)
+library(data.table)
+library(corrplot)
+library(factoextra)
+
+##finding the optimal number of clusters
+fviz_nbclust(AirQualityUCI, kmeans, method = "wss")
+labs(subtitle = "Elbow method")
+
+##clusterin the data
+km <- kmeans(AirQualityUCI, centers = 2)
+
+fviz_cluster(km, data = AirQualityUCI)
+
+
